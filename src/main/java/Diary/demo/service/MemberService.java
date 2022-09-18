@@ -20,13 +20,10 @@ public class MemberService {
     public Optional<Member> login(String uid, String password){
         return memberRepository.findByUidAndPw(uid, password);
     }
-
     public void signUp(Member member){
         memberRepository.save(member);
     }
-    public void duplicateTest(){
 
-    }
 
 
 }
