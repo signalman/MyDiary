@@ -2,11 +2,11 @@ package Diary.demo.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
+@Component
 public class Post {
     private int id;
     private String title;
