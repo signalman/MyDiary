@@ -2,15 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body>
-<form action="/login" method="post">
-    <input type="text" name="uid"> 아이디를 입력하세요! </br>
-    <input type="text" name="password"> 비밀번호를 입력하세요!
-    <button type="submit">제출</button>
-</form>
+<div class="container">
+    <div class="py-5"><h2 class="text-center">로그인</h2></div>
+    <form action="/login" method="post">
+        <label>아이디를 입력해주세요</label>
+        <input class=form-control type="text" name="uid">
+        <label>비밀번호를 입력해주세요</label>
+        <input class=form-control type="text" name="password">
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">로그인</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-dark btn-lg">취소</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
 
 <span th:if="${message=='error'}" style="color:red"> 아이디 또는 비밀번호가 일치하지 않습니다.</span>
 </body>
 </html>
+
