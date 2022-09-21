@@ -25,12 +25,26 @@ public class MemberRepository {
     }
     public Optional<Member> findByUidAndPw(String uid, String pw){
         String sql = "select * from member where uid = ? and password = ?";
-//        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, memberRowMapper(), uid, pw));
         List<Member> result= jdbcTemplate.query(sql, memberRowMapper(), uid, pw);
-//        if(result.stream().findAny().isPresent()) System.out.println("존재한다.");
-//        else System.out.println("Null값이다");
         return result.stream().findAny();
     }
+
+    public Optional<Member> findByUid(String uid){
+        String sql = "select * from member where uid = ? ";
+        List<Member> result = jdbcTemplate.query(sql, memberRowMapper(), uid);
+        return result.stream().findAny();
+    }
+    public List<Member> findAll(){
+        String sql = "select * from member";
+        List<Member> result  = jdbcTemplate.query(sql, memberRowMapper());
+        return result;
+    }
+    public Optional<Member> login(String uid, String password){
+        String sql = "select * from member where uid = ? and password = ?";
+        List<Member> result = jdbcTemplate.query(sql, memberRowMapper(), uid, password);
+        return result.stream().findAny();
+    }
+
 
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
