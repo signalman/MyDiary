@@ -3,32 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>My Diary Project</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .container{
+            max-width: 700px;        }
+    </style>
 </head>
+
 <body>
+<div class="container">
+    <h1 class="my-4 text-center">모두의 다이어리 Blog</h1>
+    <div class="row mb-4">
+        <h6 class="col text-center">누구나 읽고, 쓰는 일기장</h6>
+        <h6 class="col text-center">환영합니다. 000님</h6>
+    </div>
 
-<button th:if="${memberId == null}" onclick="location.href='/login';">로그인</button>
-<button th:if="${memberId == null}" onclick="location.href='/signup';">회원가입</button>
-<h2 th:if="${memberId != null}">안녕하세요 <span th:text="${memberId}"></span>님!</h2>
-
-
-<h1>여기는 홈페이지 환영합니다!</h1>
-
-<div>
-    <li>
-        <span>순서1</span>
-        <p>제목1</p>
-        <span>시간1</span>
-    </li>
-    <li>
-        <span>순서1</span>
-        <p>제목1</p>
-        <span>시간1</span>
-    </li>
-    <li>
-        <span>순서1</span>
-        <p>제목1</p>
-        <span>시간1</span>
-    </li>
+    <ul>
+        <li class="row border rounded-pill py-2 my-2">
+            <div class="col">1</div>
+            <div class="col">제목</div>
+            <div class="col">작성자</div>
+            <div class="col">시간</div>
+        </li>
+        <li class="row border rounded-pill py-2 my-2">
+            <div class="col">2</div>
+            <div class="col">제목</div>
+            <div class="col">작성자</div>
+            <div class="col">시간</div>
+        </li>
+        <li class="row border rounded-pill py-2 my-2">
+            <div class="col">3</div>
+            <div class="col">제목</div>
+            <div class="col">작성자</div>
+            <div class="col">시간</div>
+        </li>
+        <li class="row border rounded-pill py-2 my-2">
+            <div class="col">4</div>
+            <div class="col">제목</div>
+            <div class="col">작성자</div>
+            <div class="col">시간</div>
+        </li>
+    </ul>
 </div>
+
 </body>
 </html>
