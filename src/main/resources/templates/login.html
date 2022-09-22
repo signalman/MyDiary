@@ -7,16 +7,26 @@
         .container {
             max-width: 560px;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="py-5"><h2 class="text-center">로그인</h2></div>
-    <form action="/login" method="post">
+    <form action="/login" method="post" th:object="${loginForm}">
         <label>아이디를 입력해주세요</label>
         <input class=form-control type="text" name="uid">
+        <div th:errors="*{uid}" class="field-error mb-4"></div>
         <label>비밀번호를 입력해주세요</label>
         <input class=form-control type="text" name="password">
+        <div th:errors="*{password}" class="field-error mb-4"></div>
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err: ${#fields.globalErrors()}" th:text="${err}" class="field-error"></p>
+        </div>
         <hr class="my-4">
         <div class="row">
             <div class="col">

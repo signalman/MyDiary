@@ -9,10 +9,9 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class LoginForm {
 
-    @NotEmpty
-    @Length(min = 3, max= 20)
+    @NotEmpty(message = "공백은 입력할 수 없습니다.")
     private String uid;
 
-    @NotEmpty
+    @NotEmpty(message = "공백은 입력할 수 없습니다.")
     private String password;
 }

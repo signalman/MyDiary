@@ -15,7 +15,11 @@
     <h1 class="my-4 text-center">모두의 다이어리 Blog</h1>
     <div class="row mb-4">
         <h6 class="col text-center">누구나 읽고, 쓰는 일기장</h6>
-        <h6 class="col text-center">환영합니다. 000님</h6>
+        <h6 class="col text-center" th:if="${loginMember != null}" th:text="|환영합니다. ${loginMember.name} 님|"> </h6>
+        <div class="col" th:if="${loginMember == null}">
+            <button onclick="location.href='/login'" class="btn-info btn col">로그인</button>
+            <button onclick="location.href='/signup'" class="btn-primary btn col">회원가입</button>
+        </div>
     </div>
 
     <ul>
