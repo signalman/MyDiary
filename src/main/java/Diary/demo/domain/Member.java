@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 @Getter
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Member {
 
+    @Id
     private int id;
 
     @NotNull

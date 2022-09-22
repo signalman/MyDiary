@@ -13,12 +13,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/logout")
 @Slf4j
 public class LogoutController {
-    @GetMapping
-    public String logout(){
-        return "redirect:/";
-    }
 
-    @PostMapping
+    @GetMapping
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         if(session != null){

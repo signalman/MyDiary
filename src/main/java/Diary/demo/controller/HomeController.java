@@ -15,8 +15,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-
-
     @GetMapping
     public String home(HttpServletRequest request, Model model){
         HttpSession session = request.getSession(false);

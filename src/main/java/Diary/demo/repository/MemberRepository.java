@@ -1,6 +1,7 @@
 package Diary.demo.repository;
 
 import Diary.demo.domain.Member;
+import Diary.demo.domain.SignUpForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,10 +20,11 @@ public class MemberRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void save(Member member){
-        String sql = "insert into member(uid, password, name, phone) values(?, ?, ?, ?)";
-        jdbcTemplate.update(sql, member.getUid(), member.getPassword(), member.getName(), member.getPhone());
+    public void save(String uid, String pw, String name, String phone){
+        String sql = "insert into member(uid, password, name, phone) values (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, uid, pw, name, phone);
     }
+
     public Optional<Member> findByUidAndPw(String uid, String pw){
         String sql = "select * from member where uid = ? and password = ?";
         List<Member> result= jdbcTemplate.query(sql, memberRowMapper(), uid, pw);

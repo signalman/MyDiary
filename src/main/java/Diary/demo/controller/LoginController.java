@@ -33,13 +33,11 @@ public class LoginController {
     public String login(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
-            log.info("binding result ={}", bindingResult);
             return "login";
         }
         Member loginMember = loginService.login(form.getUid(), form.getPassword());
         if(loginMember == null){
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다");
-            log.info("binding result ={}", bindingResult);
             return "login";
         }
         HttpSession session = request.getSession();
