@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class Post {
     private int id;
     private String title;
+    private String content;
     private String createAt;
     private int memberId;
-    private String content;
 }

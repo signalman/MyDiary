@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4 text-center">모두의 다이어리 Blog</h1>
+    <form action="/posts" method="post">
+        <input type="text" name="title" class="form-control my-3" placeholder="제목을 입력해 주세요.">
+        <textarea name="content" id="" class="w-100 form-control contentContainer" style="height: 375px; padding: 8px;" placeholder="오늘의 일기를 써주세요!"></textarea>
+        <button type="submit" class="w-100 btn btn-primary btn-lg">등록</button>
+        <button type="button" class="w-100 btn btn-dark btn-lg"  onclick="location.href='/'">취소</button>
+    </form>
+</div>
+
+</body>
+</html>

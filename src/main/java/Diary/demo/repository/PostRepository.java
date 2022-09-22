@@ -17,4 +17,8 @@ public class PostRepository {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public void save(String title, String content, String date, int memberId) {
+        String sql = "insert into post (title, content, createdAt, memberId) values (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, title, content, date, memberId);
+    }
 }

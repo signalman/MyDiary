@@ -8,20 +8,25 @@
         .container{
             max-width: 700px;        }
     </style>
+    <script language="JavaScript" th:if="${loginErr}">
+        alert('로그인을 먼저 해주세요.');
+    </script>
 </head>
 
 <body>
 <div class="container">
     <h1 class="my-4 text-center">모두의 다이어리 Blog</h1>
     <div class="row mb-4">
-        <h6 class="col text-center">누구나 읽고, 쓰는 일기장</h6>
-        <div class="col" th:if="${loginMember != null}">
+        <h6 class="col text-center align-items-center m-auto">누구나 읽고, 쓰는 일기장</h6>
+        <div class="col m-auto" th:if="${loginMember != null}">
             <span th:text="|환영합니다. ${loginMember.name} 님|"></span>
-            <button class="btn btn-primary" onclick="location.href='/logout'">로그아웃</button> </h6>
+            <button class="btn btn-primary btn-sm" onclick="location.href='/logout'">로그아웃</button> </h6>
+            <button onclick="location.href='/posts'" class="btn btn-dark col btn-sm">글쓰기</button>
         </div>
-        <div class="col" th:if="${loginMember == null}">
-            <button onclick="location.href='/login'" class="btn-info btn col">로그인</button>
-            <button onclick="location.href='/signup'" class="btn-primary btn col">회원가입</button>
+        <div class="col text-lg-center align-items-center" th:if="${loginMember == null}">
+            <button onclick="location.href='/login'" class="btn-info btn col btn-sm">로그인</button>
+            <button onclick="location.href='/signup'" class="btn-primary btn col btn-sm">회원가입</button>
+            <button onclick="location.href='/posts'" class="btn btn-dark col btn-sm">글쓰기</button>
         </div>
     </div>
 
