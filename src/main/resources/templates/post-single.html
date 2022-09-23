@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4 text-center">모두의 다이어리 Blog</h1>
+    <div class="form-control my-3" th:text="${findPost.getTitle()}" ></div>
+    <div th:text="|작성자: ${findPost.getMemberName()} 작성시간: ${findPost.getCreateAt()}|"></div>
+    <div class="w-100 form-control contentContainer" style="height: 375px; padding: 8px;" th:text="${findPost.getContent()}"></div>
+    <button type="button" class="w-100 btn btn-dark btn-lg"  onclick="location.href='/'">목록으로</button>
+</div>
+</body>
+</html>

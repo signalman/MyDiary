@@ -7,6 +7,9 @@
     <style>
         .container{
             max-width: 700px;        }
+        a{
+            text-decoration: none;
+        }
     </style>
     <script language="JavaScript" th:if="${loginErr}">
         alert('로그인을 먼저 해주세요.');
@@ -30,32 +33,22 @@
         </div>
     </div>
 
-    <ul>
-        <li class="row border rounded-pill py-2 my-2" onclick="location.href='/login'">
-            <div class="col">1</div>
-            <div class="col">제목</div>
-            <div class="col">작성자</div>
-            <div class="col">시간</div>
-        </li>
-        <li class="row border rounded-pill py-2 my-2">
-            <div class="col">2</div>
-            <div class="col">제목</div>
-            <div class="col">작성자</div>
-            <div class="col">시간</div>
-        </li>
-        <li class="row border rounded-pill py-2 my-2">
-            <div class="col">3</div>
-            <div class="col">제목</div>
-            <div class="col">작성자</div>
-            <div class="col">시간</div>
-        </li>
-        <li class="row border rounded-pill py-2 my-2">
-            <div class="col">4</div>
-            <div class="col">제목</div>
-            <div class="col">작성자</div>
-            <div class="col">시간</div>
-        </li>
-    </ul>
+    <table class="w-100">
+        <div class="container">
+            <div class="row">
+                <div class="col">번호</div>
+                <div class="col">제목</div>
+                <div class="col">글쓴이</div>
+                <div class="col">날짜</div>
+            </div>
+            <div class="row align-items-start border rounded-pill py-2 my-2 w-100" th:each="post:${postList}">
+                <div class="col" th:text="${postStat.count}" >1</div>
+                <a class="col" th:href="@{|/posts/${post.getId()}|}"><div th:text="${post.getTitle()}"></div></a>
+                <div class="col" th:text="${post.getMemberName()}">작성자</div>
+                <div class="col" th:text="${post.getCreateAt()}">시간</div>
+            </div>
+        </div>
+    </table>
 </div>
 
 </body>
