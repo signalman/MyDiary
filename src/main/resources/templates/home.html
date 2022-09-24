@@ -41,14 +41,21 @@
                 <div class="col">글쓴이</div>
                 <div class="col">날짜</div>
             </div>
-            <div class="row align-items-start border rounded-pill py-2 my-2 w-100" th:each="post:${postList}">
-                <div class="col" th:text="${postStat.count}" >1</div>
+            <div class="row align-items-start border rounded-pill py-2 my-2 w-100" th:each="post:${postList.list}">
+                <div class="col" th:text="${postList.pagination.getTotalRecordCount()} - (${search.page} - 1) * ${search.recordSize} - ${postStat.index}">1</div>
                 <a class="col" th:href="@{|/posts/${post.getId()}|}"><div th:text="${post.getTitle()}"></div></a>
                 <div class="col" th:text="${post.getMemberName()}">작성자</div>
                 <div class="col" th:text="${post.getCreateAt()}">시간</div>
             </div>
         </div>
     </table>
+
+    <div th:class="row" class="row" >
+        <div></div>
+        <a th:href="@{|?page=${local}|}"  th:class="col" th:each="num:${#numbers.sequence(0, 9)}" th:text="${postList.pagination.getStartPage()}+${num}" th:with="local=${postList.pagination.getStartPage()}+${num}">1</a>
+    </div>
+
+
 </div>
 
 </body>

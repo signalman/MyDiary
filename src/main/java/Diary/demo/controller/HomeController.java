@@ -1,8 +1,6 @@
 package Diary.demo.controller;
 
-import Diary.demo.domain.Member;
-import Diary.demo.domain.Post;
-import Diary.demo.domain.PostForm;
+import Diary.demo.domain.*;
 import Diary.demo.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,19 +19,24 @@ import java.util.List;
 public class HomeController {
 
     private final PostService postService;
+    private final Search search;
     @GetMapping("/")
-    public String home(HttpServletRequest request, Model model){
+    public String home(HttpServletRequest request, Model model, @ModelAttribute("search") Search search){
         HttpSession session = request.getSession(false);
         if(session != null){
             Member member =  (Member) session.getAttribute("loginMember");
             model.addAttribute("loginMember", member);
         }
 
-        List<PostForm> postList = postService.findAll();
-        for (PostForm postForm : postList) {
+        PagingResponse<PostForm> postList = postService.findAll(search);
+        for (PostForm postForm : postList.getList()) {
             postForm.setCreateAt(postForm.getCreateAt().substring(0,16));
         }
         model.addAttribute("postList", postList);
+
+        int count = postService.count(search);
+        model.addAttribute("count", count);
+
         return "home";
     }
 
@@ -51,7 +54,6 @@ public class HomeController {
         }
         return "post";
     }
-
     @PostMapping("/posts")
     public String savePosts(@ModelAttribute Post post, HttpServletRequest request){
         HttpSession session = request.getSession(false);
@@ -62,7 +64,6 @@ public class HomeController {
         postService.save(post.getTitle(), post.getContent(), post.getCreateAt(), post.getMemberId());
         return "redirect:/";
     }
-
     @GetMapping("/posts/{postId}")
     public String showPosts(@PathVariable String postId, Model model){
         PostForm findPost = postService.findById(postId);
@@ -70,23 +71,4 @@ public class HomeController {
         model.addAttribute("findPost", findPost);
         return "post-single";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

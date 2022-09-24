@@ -2,6 +2,7 @@ package Diary.demo.repository;
 
 import Diary.demo.domain.Post;
 import Diary.demo.domain.PostForm;
+import Diary.demo.domain.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,9 +27,11 @@ public class PostRepository {
         jdbcTemplate.update(sql, title, content, date, memberId);
     }
 
-    public List<PostForm> findAll(){
-        String sql = "select post.id, post.title, post.createdAt, post.content, member.name from post join member on member.id=post.memberId";
-        return jdbcTemplate.query(sql, postRowMapper());
+    public List<PostForm> findAll(Search search){
+        String sql = "select post.id, post.title, post.createdAt, post.content, member.name from post " +
+                "join member on member.id=post.memberId " +
+                "order by id desc limit ?, ?;";
+        return jdbcTemplate.query(sql, postRowMapper(), search.getPagination().getLimitStart(), search.getRecordSize());
     }
     private RowMapper<PostForm> postRowMapper(){
         return (rs, rowNum) -> {
@@ -40,6 +43,11 @@ public class PostRepository {
             postForm.setCreateAt(rs.getString("createdAt"));
             return postForm;
         };
+    }
+
+    public int count(Search search){
+        String sql = "select count(*) from post";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
     public PostForm findById(String postId) {
