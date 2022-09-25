@@ -50,9 +50,10 @@
         </div>
     </table>
 
-    <div th:class="row" class="row" >
-        <div></div>
+    <div class="row">
+        <a th:href="@{|?page=${local}|}" th:class="col" th:if="${postList.pagination.isExistPrevPage()}" th:with="local=${search.page}-1" th:text="이전"></a>
         <a th:href="@{|?page=${local}|}"  th:class="col" th:each="num:${#numbers.sequence(0, 9)}" th:text="${postList.pagination.getStartPage()}+${num}" th:with="local=${postList.pagination.getStartPage()}+${num}">1</a>
+        <a th:href="@{|?page=${local}|}" th:class="col" th:if="${postList.pagination.isExistNextPage()}"  th:with="local=${search.page}+1"  th:text="다음"></a>
     </div>
 
 
