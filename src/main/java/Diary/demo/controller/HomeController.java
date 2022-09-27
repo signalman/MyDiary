@@ -49,7 +49,7 @@ public class HomeController {
         if(session == null){
             String loginErr = "로그인을 먼저 해주세요";
             model.addAttribute("loginErr", loginErr);
-            return "home";
+            return "redirect:/";
         }
         return "post";
     }
@@ -60,6 +60,7 @@ public class HomeController {
 
         post.setCreateAt(LocalDateTime.now().toString());
         post.setMemberId(loginMember.getId());
+
         postService.save(post.getTitle(), post.getContent(), post.getCreateAt(), post.getMemberId());
         return "redirect:/";
     }
