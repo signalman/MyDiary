@@ -50,6 +50,7 @@ public class MemberRepository {
 
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
+
             Member member = new Member();
             member.setUid((rs.getString("uid")));
             member.setPassword(rs.getString("password"));

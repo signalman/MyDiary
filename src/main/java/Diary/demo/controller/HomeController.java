@@ -35,7 +35,6 @@ public class HomeController {
 
         int count = postService.count(search);
         model.addAttribute("count", count);
-
         return "home";
     }
 
